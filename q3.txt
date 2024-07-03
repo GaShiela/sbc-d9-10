@@ -1,0 +1,15 @@
+SELECT 
+    tbl_rents_info.status, 
+    tbl_customer_info.fName, 
+    tbl_customer_info.mName,
+    tbl_customer_info.lName
+FROM 
+    tbl_rents_info 
+JOIN 
+    tbl_customer_info ON tbl_rents_info.tbl_customer_info_id = tbl_customer_info.id 
+JOIN 
+    tbl_movie_info ON tbl_rents_info.tbl_movie_info_id = tbl_movie_info.id 
+JOIN 
+    tbl_movie_inventory_info ON tbl_movie_info.id = tbl_movie_inventory_info.tbl_movie_info_id
+WHERE 
+    tbl_rents_info.status != 'RENTED'

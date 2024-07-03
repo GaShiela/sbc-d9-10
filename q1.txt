@@ -1,0 +1,14 @@
+SELECT c.fName,
+       c.lName,
+       c.mName,
+       m.title,
+       (SELECT COUNT(*) 
+        FROM tbl_rents_info r
+        WHERE r.tbl_customer_info_id = c.id 
+        AND r.tbl_movie_info_id = m.id) AS quantity_rented
+FROM tbl_customer_info c,
+     tbl_movie_info m
+WHERE EXISTS (SELECT 1 
+              FROM tbl_rents_info r
+              WHERE r.tbl_customer_info_id = c.id 
+              AND r.tbl_movie_info_id = m.id);
